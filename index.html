@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class App extends React.Component {
+            state = {
+                name: 'Dhemm',
+                age: 17
+            }
+            copyHandler = (e) => {
+                console.log('Be Original Plz');
+            }
+            changeHandler = (e) => {
+                this.setState({
+                    name: e.target.value
+                })
+            }
+            clickHandler = (e) => {
+                e.preventDefault()
+                console.log('Form submitted', this.state.name)
+            }
+            render() {
+                return (
+                    <div>
+                        <h1>Hello World</h1>
+                        <p>My name is {this.state.name} and I am {this.state.age}</p>
+                        <p onCopy={this.copyHandler}>Hello my friends</p>
+                        <form onSubmit={this.clickHandler}>
+                            <input type="text" onChange={this.changeHandler}/>
+                            <button>Submit</button>
+                        </form>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+
+</html>
