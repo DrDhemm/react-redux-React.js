@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Rainbow from '../highOrderComponents/randomColor'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
+import reactImg from './react.png'
 
 class Home extends Component {
     state = {
@@ -19,15 +21,18 @@ class Home extends Component {
         const check = posts.length ? (
             posts.map(post => {
                 return (
-                    <div className="post card" key={post.id}>
+                    <div className="post card" key={post.id} style={{paddingLeft:'10rem', overflow:'hidden'}}>
+                        <img src={reactImg} alt="react in pink" style={{width:'20rem', position:'absolute', left:'-100px'}} draggable='false'/>
                         <div className="card-content">
-                            <div className="card-title" style={{fontWeight:700}}>{post.title}</div>
+                            <Link to={'/' + post.id}>
+                                <div className="card-title" style={{ fontWeight: 700, color:'#EE6E73' }}>{post.title}</div>
+                            </Link>
                             <p>{post.body}</p>
                         </div>
                     </div>)
             })
         ) : (
-                <div className="center">No post yet here</div>
+                <div className="center">Loading post <span role="img" aria-label="hourglass">⏳</span></div>
             )
         return (
             <div className="container">
